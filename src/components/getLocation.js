@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View} from 'react-native';
-import GetLocation from 'react-native-get-location';
 import React from 'react';
+import {StyleSheet} from 'react-native';
+import GetLocation from 'react-native-get-location';
 
 export default function getLocation(currentLatitude, currentLongitude) {
   GetLocation.getCurrentPosition({

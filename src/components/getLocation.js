@@ -5,7 +5,7 @@ import GetLocation from 'react-native-get-location';
 export default function getLocation(currentLatitude, currentLongitude) {
   GetLocation.getCurrentPosition({
     enableHighAccuracy: true,
-    timeout: 2500,
+    timeout: 5000,
   })
     .then(location => {
       console.log(location);

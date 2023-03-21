@@ -11,6 +11,9 @@ run the following command:
 npm install </br>
 npx react-native run-android
 
+also You can download the apk file from below link </br>
+https://drive.google.com/drive/folders/1tEBTZ_iv18E_yIHUFfySVsAyego-zH49?usp=sharing
+
 This app uses firebase for real time location
 
 

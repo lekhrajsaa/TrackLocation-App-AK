@@ -29,7 +29,8 @@ export default function App() {
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           setIfPermission(true);
-          sendData()
+          setDataOnDB(clock, latitude, longitude, ip, appName, brand);
+          
         } else {
           setIfPermission('');
           alert('Location Permission is required');
@@ -41,42 +42,23 @@ export default function App() {
   };
 
   useEffect(() => {
+      const intervalId = setInterval(() => {
+        getDeviceInfo(setIp, setAppName, setBrand);
+        setClock(new Date().toLocaleString());
+        {ifPermission && getLocation(setLatitude, setLongitude);}
+        setDataOnDB(clock, latitude, longitude, ip, appName, brand);
+      }, 5000);
+  
+      return () => clearInterval(intervalId);
+    }, [latitude, longitude, clock]);
+
+  useEffect(() => {
     requestLocationPermission();
   }, []);
-
-  const sendData = () => {
-    // console.log(latitude);
-    // console.log(longitude);
-    // console.log(ip);
-    // console.log(appName);
-    // console.log(brand);
-    getDeviceInfo(setIp, setAppName, setBrand);
-    setInterval(() => {
-      setClock(new Date().toLocaleString());
-      getLocation(setLatitude, setLongitude);
-      setDataOnDB(clock, latitude, longitude, ip, appName, brand);
-      // console.log(clock);
-    }, 10000);
-  };
 
   const pressHandle = () => {
     requestLocationPermission();
   };
-
-  // const locationHandle = () => {
-  //   getLocation(setLatitude, setLongitude);
-  // }
-
-  // const deviceHandle = () => {
-  //   getDeviceInfo(setIp, setAppName, setBrand);
-  // }
-
-  // const submitHandle = () => {
-  //   setClock(new Date().toLocaleString());
-  //   getLocation(setLatitude, setLongitude);
-  //   getDeviceInfo(setIp, setAppName, setBrand);
-  //   setDataOnDB(clock, latitude, longitude, ip, appName, brand);
-  // }
 
   return (
     <View style={styles.mainContainer}>

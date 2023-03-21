@@ -5,7 +5,7 @@ import React from 'react';
 export default async function setDataOnDB(clock, latitude, longitude, ip, appName, brand) {
   try {
     const response = await database()
-      .ref('/users/1')
+      .ref('users/user1')
       .set({
         time: clock,
         lat: latitude,
